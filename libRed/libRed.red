@@ -117,6 +117,7 @@ Red [
 		redGetField: word/load "redGetField"
 		redRoutine:  word/load "redRoutine"
 		redBinary:	 word/load "redBinary"
+		;redBinarySet:	 word/load "redBinarySet"
 		redImage:	 word/load "redImage"
 		redString:	 word/load "redString"
 		redBlock:	 word/load "redBlock"
@@ -515,6 +516,14 @@ Red [
 		bin: binary/make-at ring/alloc bytes
 		binary/rs-append bin src bytes
 		bin
+	]
+	
+	redBinarySet: func [
+		bin		[red-binary!]
+		src		[byte-ptr!]
+		bytes		[integer!]
+	][
+		binary/rs-overwrite bin 0 src bytes 
 	]
 
 #if find [Windows macOS] OS [
@@ -1299,6 +1308,7 @@ Red [
 		redTuple
 		redTuple4
 		redBinary
+		redBinarySet
 #if find [Windows macOS] OS [
 		redImage
 ]
